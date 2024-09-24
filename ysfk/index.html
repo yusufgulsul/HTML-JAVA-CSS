@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Şık Hesap Makinesi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #sonuc {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+    <script>
+        function hesapla() {
+            const sayi1 = parseFloat(document.getElementById('sayi1').value);
+            const sayi2 = parseFloat(document.getElementById('sayi2').value);
+            const islem = document.getElementById('islem').value;
+            let sonuc;
+
+            // Girişlerin kontrolü
+            if (isNaN(sayi1) || isNaN(sayi2)) {
+                document.getElementById('sonuc').innerText = 'Lütfen tüm alanları doldurun.';
+                return;
+            }
+
+            if (islem === '+') {
+                sonuc = sayi1 + sayi2;
+            } else if (islem === '-') {
+                sonuc = sayi1 - sayi2;
+            } else if (islem === '*') {
+                sonuc = sayi1 * sayi2;
+            } else if (islem === '/') {
+                if (sayi2 !== 0) {
+                    sonuc = sayi1 / sayi2;
+                } else {
+                    sonuc = "Bir sayıyı sıfıra bölemezsiniz.";
+                }
+            }
+
+            document.getElementById('sonuc').innerText = 'Sonuç: ' + sonuc;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Hesap Makinesi</h1>
+        <input type="number" id="sayi1" placeholder="Birinci Sayı" required>
+        <input type="number" id="sayi2" placeholder="İkinci Sayı" required>
+        <select id="islem">
+            <option value="+">Topla</option>
+            <option value="-">Çıkar</option>
+            <option value="*">Çarp</option>
+            <option value="/">Böl</option>
+        </select>
+        <button type="button" onclick="hesapla()">Hesapla</button>
+        <p id="sonuc"></p>
+    </div>
+</body>
+</html>
